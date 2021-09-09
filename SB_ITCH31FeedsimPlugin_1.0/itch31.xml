@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbfs:Simulation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:sbfs="http://www.streambase.com/schemas/feedsim/02/SBFS" Description="Reads ITCH_31_sample.gz, a NASDAQ TotalView ITCH 3.1 file using a custom plug-in reader, emitting based on timestamps found in the data file">
+  <SimStreams Name="in">
+    <ProcessingOptions TimeStampColumn="1" UseFirstValueAsStartTime="true" DataGenerationMethod="DataFile" DataGenRateMethod="TimestampFromColumn" TimeSynchronized="true">
+      <DataSource Name="DataSource" DataSourceURI="ITCH_31_sample.gz" PluginReaderClass="com.streambase.contrib.feedsimplugin.itch31.FeedSimITCH31Plugin"/>
+    </ProcessingOptions>
+    <Schema>
+      <Fields Name="timestamp" DataTypeName="double" Description="">
+        <DataSourceMapping/>
+      </Fields>
+      <Fields Name="msgType" DataTypeName="string" Description="">
+        <DataSourceMapping DestFieldNum="2"/>
+      </Fields>
+      <Fields Name="eventCode" DataTypeName="string" Description="">
+        <DataSourceMapping DestFieldNum="3"/>
+      </Fields>
+      <Fields Name="stock" DataTypeName="string" Description="">
+        <DataSourceMapping DestFieldNum="4"/>
+      </Fields>
+      <Fields Name="orderReferenceNum" DataTypeName="long" Description="">
+        <DataSourceMapping DestFieldNum="5"/>
+      </Fields>
+      <Fields Name="buySellIndicator" DataTypeName="string" Description="">
+        <DataSourceMapping DestFieldNum="6"/>
+      </Fields>
+      <Fields Name="shares" DataTypeName="int" Description="">
+        <DataSourceMapping DestFieldNum="7"/>
+      </Fields>
+      <Fields Name="price" DataTypeName="double" Description="">
+        <DataSourceMapping DestFieldNum="8"/>
+      </Fields>
+      <Fields Name="tradingState" DataTypeName="string" Description="">
+        <DataSourceMapping DestFieldNum="9"/>
+      </Fields>
+      <Fields Name="MPID" DataTypeName="string" Description="">
+        <DataSourceMapping DestFieldNum="10"/>
+      </Fields>
+      <Fields Name="attribution" DataTypeName="string" Description="">
+        <DataSourceMapping DestFieldNum="11"/>
+      </Fields>
+      <Fields Name="marketCategory" DataTypeName="string" Description="">
+        <DataSourceMapping DestFieldNum="12"/>
+      </Fields>
+      <Fields Name="financialStatusIndicator" DataTypeName="string" Description="">
+        <DataSourceMapping DestFieldNum="13"/>
+      </Fields>
+      <Fields Name="roundLotSize" DataTypeName="int" Description="">
+        <DataSourceMapping DestFieldNum="14"/>
+      </Fields>
+      <Fields Name="RoundLotsOnly" DataTypeName="string" Description="">
+        <DataSourceMapping DestFieldNum="15"/>
+      </Fields>
+      <Fields Name="reason" DataTypeName="string" Description="">
+        <DataSourceMapping DestFieldNum="16"/>
+      </Fields>
+      <Fields Name="primaryMarketMaker" DataTypeName="string" Description="">
+        <DataSourceMapping DestFieldNum="17"/>
+      </Fields>
+      <Fields Name="marketMakerMode" DataTypeName="string" Description="">
+        <DataSourceMapping DestFieldNum="18"/>
+      </Fields>
+      <Fields Name="marketParticipantState" DataTypeName="string" Description="">
+        <DataSourceMapping DestFieldNum="19"/>
+      </Fields>
+      <Fields Name="marketCategoy" DataTypeName="string" Description="">
+        <DataSourceMapping DestFieldNum="20"/>
+      </Fields>
+      <Fields Name="executedShares" DataTypeName="int" Description="">
+        <DataSourceMapping DestFieldNum="21"/>
+      </Fields>
+      <Fields Name="matchNumber" DataTypeName="long" Description="">
+        <DataSourceMapping DestFieldNum="22"/>
+      </Fields>
+      <Fields Name="printable" DataTypeName="string" Description="">
+        <DataSourceMapping DestFieldNum="23"/>
+      </Fields>
+      <Fields Name="executionPrice" DataTypeName="double" Description="">
+        <DataSourceMapping DestFieldNum="24"/>
+      </Fields>
+      <Fields Name="canceledShares" DataTypeName="int" Description="">
+        <DataSourceMapping DestFieldNum="25"/>
+      </Fields>
+      <Fields Name="newOrderReferenceNum" DataTypeName="long" Description="">
+        <DataSourceMapping DestFieldNum="26"/>
+      </Fields>
+      <Fields Name="crossPrice" DataTypeName="double" Description="">
+        <DataSourceMapping DestFieldNum="27"/>
+      </Fields>
+      <Fields Name="crossType" DataTypeName="string" Description="">
+        <DataSourceMapping DestFieldNum="28"/>
+      </Fields>
+      <Fields Name="pairedShares" DataTypeName="int" Description="">
+        <DataSourceMapping DestFieldNum="29"/>
+      </Fields>
+      <Fields Name="imbalancedShares" DataTypeName="int" Description="">
+        <DataSourceMapping DestFieldNum="30"/>
+      </Fields>
+      <Fields Name="imbalanceDirection" DataTypeName="string" Description="">
+        <DataSourceMapping DestFieldNum="31"/>
+      </Fields>
+      <Fields Name="farPrice" DataTypeName="double" Description="">
+        <DataSourceMapping DestFieldNum="32"/>
+      </Fields>
+      <Fields Name="nearPrice" DataTypeName="double" Description="">
+        <DataSourceMapping DestFieldNum="33"/>
+      </Fields>
+      <Fields Name="currentReferencePrice" DataTypeName="double" Description="">
+        <DataSourceMapping DestFieldNum="34"/>
+      </Fields>
+      <Fields Name="priceVariationIndicator" DataTypeName="string" Description="">
+        <DataSourceMapping DestFieldNum="35"/>
+      </Fields>
+    </Schema>
+  </SimStreams>
+</sbfs:Simulation>

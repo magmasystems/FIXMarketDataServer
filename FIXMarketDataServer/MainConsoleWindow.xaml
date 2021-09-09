@@ -1,0 +1,38 @@
+﻿<Window x:Class="FIXMarketDataServer.MainConsoleWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:cal="clr-namespace:Microsoft.Practices.Prism.Regions;assembly=Microsoft.Practices.Prism" 
+    xmlns:FIXMarketDataServer="clr-namespace:FIXMarketDataServer" xmlns:Presentation="clr-namespace:MagmaTrader.Presentation;assembly=MagmaTrader.Presentation" Title="FIX Market Data Server" 
+    Height="615" 
+    Width="1000" 
+    Left="0"
+    Top="100"
+    Name="ConsoleWindow" 
+    MinWidth="100" MinHeight="100" 
+    Background="{StaticResource MagmaWindowDarkBrush}" 
+    SizeToContent="WidthAndHeight"
+>
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ToolbarResourceDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <StackPanel x:Name="MainPanel" HorizontalAlignment="Stretch">
+        <ContentControl>
+            <FIXMarketDataServer:MainToolbarView x:Name="MainToolbar" />
+        </ContentControl>
+        <StackPanel x:Name="MainPanel2" Orientation="Horizontal">
+            <ContentControl cal:RegionManager.RegionName="Main">
+            </ContentControl>
+            <ContentControl cal:RegionManager.RegionName="OrderBooks" Width="400">
+            </ContentControl>
+        </StackPanel>
+        <ContentControl>
+            <Presentation:MessageLogView x:Name="FIXLogger" VerticalAlignment="Stretch" Height="200"/>
+        </ContentControl>
+    </StackPanel>
+</Window>

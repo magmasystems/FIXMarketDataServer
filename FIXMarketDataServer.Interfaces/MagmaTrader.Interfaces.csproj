@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A397CF49-3148-4298-BA0B-D9A5EED468D6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MagmaTrader.Interfaces</RootNamespace>
+    <AssemblyName>MagmaTrader.Interfaces</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FIXExchangeSimulatorControlEvent.cs" />
+    <Compile Include="MarketDataRequestReceivedEvent.cs" />
+    <Compile Include="IOrderBlotterViewModel.cs" />
+    <Compile Include="IOrderBlotterView.cs" />
+    <Compile Include="IFIXExchangeSimulatorClient.cs" />
+    <Compile Include="IOrderBlotterModel.cs" />
+    <Compile Include="OrderMessageReceivedEvent.cs" />
+    <Compile Include="IEquityOrderTicketViewModel.cs" />
+    <Compile Include="IFXQuoteBlotterViewModel.cs" />
+    <Compile Include="Level2QuoteServiceControlEvent.cs" />
+    <Compile Include="ILevel2BookViewModel.cs" />
+    <Compile Include="ILevel2BookView.cs" />
+    <Compile Include="ILevel2BookModel.cs" />
+    <Compile Include="IQuoteBlotterViewModelBase.cs" />
+    <Compile Include="IQuoteBlotterViewModel.cs" />
+    <Compile Include="IFIXClient.cs" />
+    <Compile Include="FIXGeneratorControlEvent.cs" />
+    <Compile Include="IFIXServer.cs" />
+    <Compile Include="IQuoteCacheModel.cs" />
+    <Compile Include="IQuoteCacheViewModel.cs" />
+    <Compile Include="IQuoteCacheView.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\..\Program Files %28x86%29\Microsoft Prism 4.1\PrismLibrary\Desktop\Prism.UnityExtensions\Prism.UnityExtensions.Desktop.csproj">
+      <Project>{17831F3B-6B82-4916-BD2B-2CE2071EA622}</Project>
+      <Name>Prism.UnityExtensions.Desktop</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\..\Program Files %28x86%29\Microsoft Prism 4.1\PrismLibrary\Desktop\Prism\Prism.Desktop.csproj">
+      <Project>{77138947-1D13-4E22-AEE0-5D0DD046CA34}</Project>
+      <Name>Prism.Desktop</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FIXMarketDataServer.Data\MagmaTrader.Data.csproj">
+      <Project>{67AF5B63-F5A8-4F1A-9223-00F3242AB1B6}</Project>
+      <Name>MagmaTrader.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

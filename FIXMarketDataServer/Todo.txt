@@ -1,0 +1,7 @@
+﻿x More columns for DOB
+x DOB and Quote toolbar should only have one start/stop button
+x Can we assign a different DataContext per toolbar?
+x Colors on DOB viewer
+x Send Level2 quotes from server to client
+Aggregated mode for DOB
+

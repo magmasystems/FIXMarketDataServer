@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="FIXMarketDataServer.Level2BookModule.Views.Level2BookView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:ValueConverters="clr-namespace:MagmaTrader.Presentation.ValueConverters;assembly=MagmaTrader.Presentation" mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="400">
+
+    <UserControl.Resources>
+        <!-- I grabbed a theme from Codeplex.          -->
+        <!-- http://datagridthemesfromsl.codeplex.com/ -->
+        <ResourceDictionary Source="/DataGridThemes;component/ExpressionDark.xaml" />
+    </UserControl.Resources>
+
+    <DockPanel LastChildFill="True" Background="{StaticResource MagmaWindowDarkBrush}">
+        <Label Height="24" DockPanel.Dock="Top" Content="{Binding Path=Current.Symbol}" Background="Black" Foreground="Yellow" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" />
+        <Grid x:Name="gridBookContainer" ShowGridLines="False" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Name="BidSide" Width="50*">
+                </ColumnDefinition>
+                <ColumnDefinition x:Name="AskSide" Width="50*">
+                </ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <DataGrid Grid.Column="0" Name="dgBuy" AutoGenerateColumns="False" HorizontalAlignment="Right" VerticalAlignment="Stretch" GridLinesVisibility="All"  ItemsSource="{Binding Current.BidBook.BookForOneSide}">
+                <DataGrid.Resources>
+                    <ValueConverters:DOBPriceLevelToBrushValueConverter x:Key="dobPriceLevelToBrushValueConverter" />
+                    <Style x:Key="Level2CellStyle" TargetType="{x:Type DataGridCell}">
+                        <Setter Property="Background" Value="{Binding Path=PriceLevel, Converter={StaticResource dobPriceLevelToBrushValueConverter}}"/>
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <!--<DataGridTextColumn Binding="{Binding PriceLevel}"                        Header="Lvl"    CellStyle="{StaticResource Level2CellStyle}" />-->
+                    <DataGridTextColumn Binding="{Binding Broker}"                            Header="Broker" CellStyle="{StaticResource Level2CellStyle}" />
+                    <DataGridTextColumn Binding="{Binding CumQuantity}"                       Header="Cum"    CellStyle="{StaticResource Level2CellStyle}" />
+                    <DataGridTextColumn Binding="{Binding Quantity}"                          Header="Size"   CellStyle="{StaticResource Level2CellStyle}" />
+                    <DataGridTextColumn Binding="{Binding Price, StringFormat={}{0:00.00}}"   Header="Px"     CellStyle="{StaticResource Level2CellStyle}" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <DataGrid Grid.Column="1" Name="dgSell" AutoGenerateColumns="False" HorizontalAlignment="Left" VerticalAlignment="Stretch" GridLinesVisibility="All" ItemsSource="{Binding Current.AskBook.BookForOneSide}">
+                <DataGrid.Resources>
+                    <ValueConverters:DOBPriceLevelToBrushValueConverter x:Key="dobPriceLevelToBrushValueConverter" />
+                    <Style x:Key="Level2CellStyle" TargetType="{x:Type DataGridCell}">
+                        <Setter Property="Background" Value="{Binding Path=PriceLevel, Converter={StaticResource dobPriceLevelToBrushValueConverter}}"/>
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Price, StringFormat={}{0:00.00}}"   Header="Px"     CellStyle="{StaticResource Level2CellStyle}" />
+                    <DataGridTextColumn Binding="{Binding Quantity}"                          Header="Size"   CellStyle="{StaticResource Level2CellStyle}" />
+                    <DataGridTextColumn Binding="{Binding CumQuantity}"                       Header="Cum"    CellStyle="{StaticResource Level2CellStyle}" />
+                    <DataGridTextColumn Binding="{Binding Broker}"                            Header="Broker" CellStyle="{StaticResource Level2CellStyle}" />
+                    <!--<DataGridTextColumn Binding="{Binding PriceLevel}"                        Header="Lvl"    CellStyle="{StaticResource Level2CellStyle}" />-->
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </DockPanel>
+</UserControl>

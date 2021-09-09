@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/MagmaTrader.Data" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/MagmaTrader.Data" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="Level2Book">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AskBook" nillable="true" type="tns:Level2QuoteSide" />
+      <xs:element minOccurs="0" name="BidBook" nillable="true" type="tns:Level2QuoteSide" />
+      <xs:element minOccurs="0" name="Symbol" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Level2Book" nillable="true" type="tns:Level2Book" />
+  <xs:complexType name="Level2QuoteSide">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BookForOneSide" nillable="true" type="tns:ArrayOfLevel2DisplayQuote" />
+      <xs:element minOccurs="0" name="Side" type="tns:Side" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Level2QuoteSide" nillable="true" type="tns:Level2QuoteSide" />
+  <xs:complexType name="ArrayOfLevel2DisplayQuote">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Level2DisplayQuote" nillable="true" type="tns:Level2DisplayQuote" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLevel2DisplayQuote" nillable="true" type="tns:ArrayOfLevel2DisplayQuote" />
+  <xs:complexType name="Level2DisplayQuote">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Level2Quote">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CumQuantity" type="xs:int" />
+          <xs:element minOccurs="0" name="NumBrokers" type="xs:int" />
+          <xs:element minOccurs="0" name="PriceLevel" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Level2DisplayQuote" nillable="true" type="tns:Level2DisplayQuote" />
+  <xs:complexType name="Level2Quote">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Broker" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Price" type="xs:double" />
+      <xs:element minOccurs="0" name="Quantity" type="xs:int" />
+      <xs:element minOccurs="0" name="Time" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Level2Quote" nillable="true" type="tns:Level2Quote" />
+  <xs:simpleType name="Side">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Undefined">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">-1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Buy" />
+      <xs:enumeration value="Sell" />
+      <xs:enumeration value="ShortSell">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">5</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Side" nillable="true" type="tns:Side" />
+</xs:schema>

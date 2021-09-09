@@ -1,0 +1,25 @@
+﻿# default settings for sessions
+[DEFAULT]
+ConnectionType=acceptor
+ReconnectInterval=30
+SenderCompID=MAGMAFIXSERVER
+
+# session definition
+# inherit ConnectionType, ReconnectInterval and SenderCompID from default
+[SESSION]
+BeginString=FIX.4.4
+TargetCompID=MAGMAFIXCLIENT
+StartTime=00:00:00
+EndTime=23:59:00
+HeartBtInt=20
+SocketAcceptPort=6363
+#SocketConnectPort=6363
+#SocketConnectHost=127.0.0.1
+UseDataDictionary=Y
+ValidateFieldsOutOfOrder=N
+DataDictionary=..\..\..\ServerModules\FIX44.xml
+FileStorePath=C:\QuickFixLogs
+FileLogPath=C:\QuickFixLogs
+CheckLatency=N
+RefreshOnLogon=Y
+ResetOnLogon=Y

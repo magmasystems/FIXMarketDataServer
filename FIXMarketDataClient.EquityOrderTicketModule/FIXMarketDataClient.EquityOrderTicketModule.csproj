@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4FAB5ADB-894E-47F6-8945-B6C75C4BAA70}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FIXMarketDataClient.EquityOrderTicketModule</RootNamespace>
+    <AssemblyName>FIXMarketDataClient.EquityOrderTicketModule</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\ClientModules\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.Unity, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Microsoft Prism 4\Lib\Desktop\Unity\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="quickfix_net, Version=1.0.3748.12649, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\quickfix\lib\quickfix_net.dll</HintPath>
+    </Reference>
+    <Reference Include="quickfix_net_messages, Version=1.0.3748.12672, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\quickfix\lib\quickfix_net_messages.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ViewModels\EquityOrderTicketViewModel.cs" />
+    <Compile Include="Views\EquityOrderTicketView.xaml.cs">
+      <DependentUpon>EquityOrderTicketView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EquityOrderTicketValidationRules.cs" />
+    <Compile Include="Models\EquityOrderTicketModel.cs" />
+    <Compile Include="EquityOrderTicketModule.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\..\Program Files %28x86%29\Microsoft Prism 4.1\PrismLibrary\Desktop\Prism.UnityExtensions\Prism.UnityExtensions.Desktop.csproj">
+      <Project>{17831F3B-6B82-4916-BD2B-2CE2071EA622}</Project>
+      <Name>Prism.UnityExtensions.Desktop</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\..\Program Files %28x86%29\Microsoft Prism 4.1\PrismLibrary\Desktop\Prism\Prism.Desktop.csproj">
+      <Project>{77138947-1D13-4E22-AEE0-5D0DD046CA34}</Project>
+      <Name>Prism.Desktop</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FIXMarketDataServer.Data\MagmaTrader.Data.csproj">
+      <Project>{67AF5B63-F5A8-4F1A-9223-00F3242AB1B6}</Project>
+      <Name>MagmaTrader.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FIXMarketDataServer.FIXClientModule\FIXMarketDataClient.FIXClientModule.csproj">
+      <Project>{6EF2A606-473D-4CC9-A257-F6278D029C24}</Project>
+      <Name>FIXMarketDataClient.FIXClientModule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FIXMarketDataServer.Interfaces\MagmaTrader.Interfaces.csproj">
+      <Project>{A397CF49-3148-4298-BA0B-D9A5EED468D6}</Project>
+      <Name>MagmaTrader.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FIXMarketDataServer.Presentation\MagmaTrader.Presentation.csproj">
+      <Project>{0BE7B1E5-520A-4D71-819D-DA1221CF96E4}</Project>
+      <Name>MagmaTrader.Presentation</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Views\EquityOrderTicketView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Dictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

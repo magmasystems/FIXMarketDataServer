@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0AF148AC-B692-4571-A1DF-54E123B2CB49}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FIXMarketDataClient</RootNamespace>
+    <AssemblyName>FIXMarketDataClient</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CustomColorPicker">
+      <HintPath>..\ExternalLibraries\CustomColorPicker.dll</HintPath>
+    </Reference>
+    <Reference Include="DataGridThemes">
+      <HintPath>..\FIXMarketDataClient.QuoteBlotterModule\Themes\DataGridThemes.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Microsoft Prism 4\Lib\Desktop\CommonServiceLocation\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Microsoft Prism 4\Lib\Desktop\Unity\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="EquityContainerView.xaml.cs">
+      <DependentUpon>EquityContainerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\Level2QuoteServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Page Include="EquityContainerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainClientConsoleWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Commands.cs" />
+    <Compile Include="IShellView.cs" />
+    <Compile Include="MainClientConsoleWindow.xaml.cs">
+      <DependentUpon>MainClientConsoleWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="MainClientToolbarView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MainClientToolbarView.xaml.cs">
+      <DependentUpon>MainClientToolbarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <None Include="Service References\Level2QuoteServiceReference\MagmaTrader.Data.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Level2QuoteServiceReference\Message.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Level2QuoteServiceReference\service.wsdl" />
+    <None Include="Service References\Level2QuoteServiceReference\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Level2QuoteServiceReference\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\..\Program Files %28x86%29\Microsoft Prism 4.1\PrismLibrary\Desktop\Prism.UnityExtensions\Prism.UnityExtensions.Desktop.csproj">
+      <Project>{17831F3B-6B82-4916-BD2B-2CE2071EA622}</Project>
+      <Name>Prism.UnityExtensions.Desktop</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\..\Program Files %28x86%29\Microsoft Prism 4.1\PrismLibrary\Desktop\Prism\Prism.Desktop.csproj">
+      <Project>{77138947-1D13-4E22-AEE0-5D0DD046CA34}</Project>
+      <Name>Prism.Desktop</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FIXMarketDataServer.Data\MagmaTrader.Data.csproj">
+      <Project>{67AF5B63-F5A8-4F1A-9223-00F3242AB1B6}</Project>
+      <Name>MagmaTrader.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FIXMarketDataServer.FIXServerModule\FIXMarketDataServer.FIXServerModule.csproj">
+      <Project>{B4B47165-56DD-47ED-B706-F14C7B43AD79}</Project>
+      <Name>FIXMarketDataServer.FIXServerModule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FIXMarketDataServer.Interfaces\MagmaTrader.Interfaces.csproj">
+      <Project>{A397CF49-3148-4298-BA0B-D9A5EED468D6}</Project>
+      <Name>MagmaTrader.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FIXMarketDataServer.Presentation\MagmaTrader.Presentation.csproj">
+      <Project>{0BE7B1E5-520A-4D71-819D-DA1221CF96E4}</Project>
+      <Name>MagmaTrader.Presentation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Magma.Prism\MagmaTrader.Prism.csproj">
+      <Project>{2FA526D0-BE5D-4181-8197-7E992E0FB3F5}</Project>
+      <Name>MagmaTrader.Prism</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MarketData\MagmaTrader.MarketData.csproj">
+      <Project>{7908B552-9841-4F1C-85B3-FB35198D57C3}</Project>
+      <Name>MagmaTrader.MarketData</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\Level2QuoteServiceReference\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Level2QuoteServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Level2QuoteServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Level2QuoteServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

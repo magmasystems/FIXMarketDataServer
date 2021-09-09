@@ -1,0 +1,100 @@
+﻿<Window x:Class="FIXMarketDataClient.EquityOrderTicket"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        xmlns:FIXMarketDataClient="clr-namespace:FIXMarketDataClient" 
+        xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:Data="clr-namespace:FIXMarketDataServer.Data;assembly=FIXMarketDataServer.Data" Title="Equity Order Ticket" 
+        Height="300" 
+        Width="300" 
+        Background="{StaticResource MagmaWindowDarkBrush}"
+        ShowInTaskbar="False"
+        WindowStartupLocation="CenterOwner"
+ >
+    <Window.Resources>
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="Foreground" Value="LightGray" />
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="LightGray" />
+            <Setter Property="Foreground" Value="Black" />
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type ComboBox}">
+            <Setter Property="Background" Value="LightBlue" />
+            <Setter Property="Foreground" Value="Black" />
+        </Style>
+        <Style x:Key="ComboBoxItemContainerStyle" TargetType="{x:Type ComboBoxItem}">
+            <Setter Property="Background" Value="LightGray" />
+            <Setter Property="Foreground" Value="Black" />
+        </Style>
+
+        <!-- In the control template for the textbox, unless we use a TemplateBinding, the bound text will never be displayed. -->
+        <ControlTemplate x:Key="textboxTemplate" TargetType="{x:Type TextBox}">
+            <Border CornerRadius="6" BorderThickness="3" BorderBrush="LightGray">
+                <Grid>
+                    <Rectangle Fill="LightGray"></Rectangle>
+                    <TextBox BorderThickness="0" Margin="2,2,2,2" Text="{TemplateBinding Text}" Foreground="Black" />
+                </Grid>
+            </Border>
+        </ControlTemplate>
+
+        <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type System:Enum}" x:Key="TimeInForceValues">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="Data:TimeInForce" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+
+    </Window.Resources>
+    
+    <Grid ShowGridLines="False" Margin="2, 8, 2, 8">
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Label   Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Margin="0, 2, 8, 2">Symbol</Label>
+        <TextBox x:Name="tbxSymbol" Grid.Row="0" Grid.Column="1" IsEnabled="False" Margin="0, 2, 8, 2" Height="24" Template="{StaticResource textboxTemplate}" Text="{Binding Path=Symbol.Name}" />
+
+        <Label   Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Margin="0, 2, 8, 2">Quantity</Label>
+        <TextBox x:Name="tbxQuantity" Grid.Row="1" Grid.Column="1"  Margin="0, 2, 8, 2" Height="24">
+            <Binding Path="Quantity">
+                <Binding.ValidationRules>
+                    <FIXMarketDataClient:EquityOrderTicketQuantityValidationRule />
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
+
+        <Label   Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Margin="0, 2, 8, 2">Price</Label>
+        <TextBox x:Name="tbxPrice" Grid.Row="2" Grid.Column="1" Margin="0, 2, 8, 2" Height="24">
+            <Binding Path="Price" StringFormat="F2">
+                <Binding.ValidationRules>
+                    <FIXMarketDataClient:EquityOrderTicketPriceValidationRule Bid="10.00" Ask="10.05" />
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
+
+        <Label   Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Margin="0, 2, 8, 2">Time In Force</Label>
+        <ComboBox x:Name="tbxTIF" Grid.Row="3" Grid.Column="1" Margin="0, 2, 8, 2" Height="24" 
+                  ItemsSource="{Binding Source={StaticResource TimeInForceValues}}"
+                  SelectedValue="{Binding Path=TIF}"
+                  ItemContainerStyle="{StaticResource ComboBoxItemContainerStyle}"
+                  >
+        </ComboBox>
+
+        <StackPanel Grid.Row="4" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="btnBuy"     Height="24" Width="60" Margin="16,0,0,0" Content="Buy"  Click="OnBuy"  Foreground="Green" />
+            <Button x:Name="btnSell"    Height="24" Width="60" Margin="16,0,0,0" Content="Sell" Click="OnSell" Foreground="Red"   />
+        </StackPanel>            
+    </Grid>
+</Window>
